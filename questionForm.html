@@ -9,14 +9,14 @@
 
 </head>
 
-<body>
-    <form name="data">
+<body onload="fillForm()">
+    <form name="data" id="qForm">
         <table>
             <tr>
                 <td>Categories</td>
                 <td>1</td>
                 <td>
-                    <input type="text" name="catagory1" />
+                    <input type=" text" name="catagory1" />
                 </td>
                 <td>2</td>
                 <td>
@@ -256,8 +256,8 @@
             </table>
         </div>
         Save To File: <input name="save" value="Save" type="button" onclick="saveFormData(this.form)" /><br />
-        Save And Go To Game: <input name="play" value="Play" type="button" onclick="play()" /> <br />
-        Read From File: <input type="file" id="file-input" onchange="handleFileSelection(event)" />
+        Save And Go To Game: <input name="play" value="Play" type="button" onclick="playGame(this.form)" /> <br />
+        Read From File: <input type="file" id="file-input" onchange="handleFileSelection(event)" /> <br />
         <p id="message" />
 
     </form>
