@@ -1,8 +1,7 @@
 function saveFormData(form) {
-    console.log("in add");
     var output = "";
     for (i = 0; i < form.length - 1; i++) {
-        output += form.elements[i].value + "\n";
+        output += form.elements[i].value + "//";
     }
 
     var element = document.createElement('a');
@@ -22,9 +21,10 @@ function updateData(data) {
     let values = [];
     var string = "";
     for (i = 0; i < data.length; i++) {
-        if (data[i] === '\n') {
+        if (data[i] == '/' && data[i + 1] == '/') {
             values.push(string);
             string = "";
+            i++;
         } else {
             string += data[i];
         }
@@ -76,10 +76,26 @@ function playGame(form) {
         //console.log(key + form.elements[i].value);
         localStorage.setItem(key, form.elements[i].value);
     }
-
     let catagory = 1;
     let question = 1;
-    for (i = 6; i < form.length; i++) {
+    let valueIndex = 6;
+    for (i = 6; i < 12; i++) {
+        while (question < 6) {
+            key = "v" + catagory.toString() + "_" + question.toString();
+            localStorage.setItem(key, form.elements[valueIndex].value);
+            question++;
+            valueIndex++;
+        }
+        catagory++;
+        question = 1;
+        valueIndex = 6;
+    }
+
+    catagory = 1;
+    question = 1;
+    for (i = 12; i < form.length; i++) {
+        localStorage.setItem((catagory.toString() + "_" + question.toString()), "1");
+
         key = "q" + catagory.toString() + "_" + question.toString();
         //console.log(key + form.elements[i].value);
         localStorage.setItem(key, form.elements[i].value);
@@ -101,16 +117,23 @@ function playGame(form) {
 
 function fillForm() {
     form = document.getElementById("qForm");
-    console.log("in fill");
     for (i = 0; i < 6; i++) {
         key = "cat" + (i + 1).toString();
         //console.log(key + form.elements[i].value);
         form.elements[i].value = localStorage.getItem(key);
     }
 
-    let catagory = 1;
     let question = 1;
-    for (i = 6; i < form.length; i++) {
+    for (i = 6; i < 12; i++) {
+        key = "v" + "1" + "_" + question.toString();
+        form.elements[i].value = localStorage.getItem(key);
+        console.log(form.elements[i].value);
+        question++;
+    }
+
+    let catagory = 1;
+    question = 1;
+    for (i = 12; i < form.length; i++) {
         key = "q" + catagory.toString() + "_" + question.toString();
         //console.log(key + form.elements[i].value);
         form.elements[i].value = localStorage.getItem(key);
@@ -131,6 +154,7 @@ function fillForm() {
 }
 
 function getData() {
+    console.log("in get");
     var catagories = [];
     var questions = [];
     var answers = [];
@@ -139,9 +163,6 @@ function getData() {
         questions.push([]);
         answers.push([]);
         values.push([]);
-        for (j = 0; j < 6; j++) {
-            values[i][j] = 100 + (100 * j);
-        }
     }
 
     // loops to get categories
@@ -154,18 +175,15 @@ function getData() {
 
     let catagory = 1;
     let question = 1;
-    var i = 5;
-    // loops to get questions and answers
+    //loops to get values in boxes
     while (true) {
-        i++
-        key = "q" + catagory.toString() + "_" + question.toString();
-        questions[catagory - 1][question - 1] = localStorage.getItem(key);
-        i++;
-        key = "a" + catagory.toString() + "_" + question.toString();
-        answers[catagory - 1][question - 1] = localStorage.getItem(key);
-
         key = "v" + catagory.toString() + "_" + question.toString();
-        document.getElementById(key).innerHTML = values[catagory - 1][question - 1];
+        if (localStorage.getItem(catagory.toString() + "_" + question.toString()) == "1") {
+            values[catagory - 1][question - 1] = localStorage.getItem(key);
+            document.getElementById(key).innerHTML = values[catagory - 1][question - 1];
+        } else {
+            document.getElementById(key).innerHTML = "";
+        }
 
         question++;
         if (question == 6) {
@@ -176,20 +194,6 @@ function getData() {
             break;
         }
     }
-
-    /*
-    i = 0;
-    for (i = 0; i < catagories.length; i++) {
-        console.log(catagories[i]);
-    }
-
-    for (i = 0; i < questions.length; i++) {
-        for (j = 0; j < questions[i].length; j++) {
-            console.log(questions[i][j]);
-            console.log(answers[i][j]);
-        }
-    }
-    */
 }
 
 function questionClicked(event) {
@@ -198,8 +202,23 @@ function questionClicked(event) {
     let a = "a" + key.substring(1, 4);
     localStorage.setItem("question", q);
     localStorage.setItem("answer", a);
+    localStorage.setItem(key.substring(1, 4), "0");
 
     window.location.href = "question.html";
+}
+
+function resetGame() {
+    let catagory = 1;
+    let question = 1;
+    while (catagory < 7) {
+        localStorage.setItem((catagory.toString() + "_" + question.toString()), "1");
+        question++;
+        if (question == 6) {
+            question = 1;
+            catagory++;
+        }
+    }
+    getData();
 }
 
 function showAnswer() {

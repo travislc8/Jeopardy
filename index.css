@@ -2,6 +2,7 @@ html,
 body {
     width: 100%;
     height: 100%;
+    font-size: xx-large;
 }
 
 table {
@@ -16,6 +17,15 @@ table tr td {
     text-align: center;
 }
 
+table .questions td {
+    background-color: lightblue;
+    font-size: 3em;
+}
+
+table .catagories td {
+    background-color: blue;
+    font-size: xx-large;
+}
 
 table .questions td:hover {
     border: solid 2px red;
