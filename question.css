@@ -9,4 +9,5 @@ body {
 p {
     font-size: 8em;
     color: white;
+    cursor: default;
 }

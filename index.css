@@ -20,6 +20,7 @@ table tr td {
 table .questions td {
     background-color: lightblue;
     font-size: 3em;
+    cursor: pointer;
 }
 
 table .catagories td {
