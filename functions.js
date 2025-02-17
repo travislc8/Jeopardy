@@ -113,6 +113,7 @@ function playGame(form) {
         }
     }
     window.location.href = "index.html";
+    console.log(localStorage);
 }
 
 function fillForm() {
@@ -155,6 +156,7 @@ function fillForm() {
 
 function getData() {
     console.log("in get");
+    console.log(localStorage);
     var catagories = [];
     var questions = [];
     var answers = [];

@@ -2,14 +2,14 @@ html,
 body {
     width: 100%;
     height: 100%;
-    font-size: xx-large;
+    margin: 0%;
+    background-color: black;
 }
 
 table {
-    border: solid 3px black;
+    table-layout: fixed;
     width: 100%;
-    height: 90%;
-
+    height: 95%;
 }
 
 table tr td {
@@ -18,12 +18,16 @@ table tr td {
 }
 
 table .questions td {
-    background-color: lightblue;
+    font-weight: bold;
+    color: orange;
+    border-radius: 10px;
+    background-color: blue;
     font-size: 3em;
     cursor: pointer;
 }
 
 table .catagories td {
+    color: white;
     background-color: blue;
     font-size: xx-large;
 }
@@ -34,12 +38,20 @@ table .questions td:hover {
 
 .questions {
     height: 15%;
-    width: 100%;
+    width: 15%;
     border: solid 2px black;
 }
 
 .catagories {
     height: 15%;
-    width: 100%;
+    width: 15%;
     border: solid 2px black;
+}
+
+.nav {
+    padding: auto;
+    height: 5%;
+    display: block;
+    margin: auto;
+    text-align: center;
 }
