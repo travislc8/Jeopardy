@@ -11,90 +11,30 @@
 
 <body onload="getData()">
     <table>
-        <tr class="catagories">
-            <td id="cat1">
-            </td>
-            <td id="cat2">
-            </td>
-            <td id="cat3">
-            </td>
-            <td id="cat4">
-            </td>
-            <td id="cat5">
-            </td>
-            <td id="cat6">
-            </td>
-        </tr>
-        <tr class="questions">
-            <td id="v1_1" onclick="questionClicked(event)">
-            </td>
-            <td id="v2_1" onclick="questionClicked(event)">
-            </td>
-            <td id="v3_1" onclick="questionClicked(event)">
-            </td>
-            <td id="v4_1" onclick="questionClicked(event)">
-            </td>
-            <td id="v5_1" onclick="questionClicked(event)">
-            </td>
-            <td id="v6_1" onclick="questionClicked(event)">
-            </td>
-        </tr>
-        <tr class="questions">
-            <td id="v1_2" onclick="questionClicked(event)">
-            </td>
-            <td id="v2_2" onclick="questionClicked(event)">
-            </td>
-            <td id="v3_2" onclick="questionClicked(event)">
-            </td>
-            <td id="v4_2" onclick="questionClicked(event)">
-            </td>
-            <td id="v5_2" onclick="questionClicked(event)">
-            </td>
-            <td id="v6_2" onclick="questionClicked(event)">
-            </td>
-        </tr>
-        <tr class="questions">
-            <td id="v1_3" onclick="questionClicked(event)">
-            </td>
-            <td id="v2_3" onclick="questionClicked(event)">
-            </td>
-            <td id="v3_3" onclick="questionClicked(event)">
-            </td>
-            <td id="v4_3" onclick="questionClicked(event)">
-            </td>
-            <td id="v5_3" onclick="questionClicked(event)">
-            </td>
-            <td id="v6_3" onclick="questionClicked(event)">
-            </td>
-        </tr>
-        <tr class="questions">
-            <td id="v1_4" onclick="questionClicked(event)">
-            </td>
-            <td id="v2_4" onclick="questionClicked(event)">
-            </td>
-            <td id="v3_4" onclick="questionClicked(event)">
-            </td>
-            <td id="v4_4" onclick="questionClicked(event)">
-            </td>
-            <td id="v5_4" onclick="questionClicked(event)">
-            </td>
-            <td id="v6_4" onclick="questionClicked(event)">
-            </td>
-        </tr>
-        <tr class="questions">
-            <td id="v1_5" onclick="questionClicked(event)">
-            </td>
-            <td id="v2_5" onclick="questionClicked(event)">
-            </td>
-            <td id="v3_5" onclick="questionClicked(event)">
-            </td>
-            <td id="v4_5" onclick="questionClicked(event)">
-            </td>
-            <td id="v5_5" onclick="questionClicked(event)">
-            </td>
-            <td id="v6_5" onclick="questionClicked(event)">
-            </td>
-        </tr>
+        <script>
+            var columnCount = localStorage.getItem("colNum");
+            var questionCount = localStorage.getItem("qNum");
+            console.log(columnCount);
+            console.log(questionCount);
+
+            document.write("<tr class='catagories'>");
+            for (let i = 0; i < columnCount; i++) {
+                let idString = 'cat' + (i + 1).toString();
+                document.write("<td id='" + idString + "'></td>");
+            }
+            document.write("</tr>");
+
+            for (let q = 0; q < questionCount; q++) {
+                document.write("<tr class='questions'>");
+                for (let c = 0; c < columnCount; c++) {
+                    let idString = 'v' + (c + 1).toString() + '_' + (q + 1).toString();
+                    console.log(idString);
+                    document.write("<td id='" + idString + "' onclick='questionClicked(event)'></td>");
+                }
+                document.write("</tr>");
+            }
+
+        </script>
     </table>
     <div class="nav">
         <input type="button" value="Edit Data" onclick="goToEdit()" />
