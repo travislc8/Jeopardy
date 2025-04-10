@@ -3,6 +3,6 @@
 
 <h2>To Download</h2>
 <h3>Click the "<> Code Button</h3>
-![Screenshot 2025-04-09 214559](https://github.com/user-attachments/assets/ee951a83-b0b0-4f9b-b9d4-db69dd9d0f8c)
+  <img src="https://github.com/user-attachments/assets/ee951a83-b0b0-4f9b-b9d4-db69dd9d0f8c"/>
 <h3>Click the Download Zip</h3>
-![Screenshot 2025-04-09 214707](https://github.com/user-attachments/assets/ff315924-72ce-439d-9f46-7640add746e1)
+  <img src="https://github.com/user-attachments/assets/ff315924-72ce-439d-9f46-7640add746e1"/>
